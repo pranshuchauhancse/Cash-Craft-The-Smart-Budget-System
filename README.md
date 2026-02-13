@@ -1,70 +1,135 @@
-# Cash-Craft - Master Your Finances 🚀
+# **Cash-Craft – Master Your Finances 🚀**
 
-Cash-Craft is a premium personal finance management application built with the MERN stack. It allows users to track expenses, manage bills, and visualize their financial health through a sleek, modern dashboard. It also features a robust Admin Panel for system monitoring and user management.
+**Cash-Craft** is a premium personal finance management application built using the **MERN stack**, designed to help users take full control of their financial life. With a sleek, modern interface and powerful tracking tools, Cash-Craft makes managing expenses, bills, and overall financial health both intuitive and visually engaging.
 
-## ✨ Features
+In addition to user-focused features, Cash-Craft includes a comprehensive **Admin Panel** for system oversight, analytics, and user management.
 
--   **Intelligent Dashboard**: Real-time stats for income, expenses, and savings.
--   **Expense Tracking**: Categorized expense logging with custom tags and currency support.
--   **Bill Management**: Track one-time and recurring bills with status updates.
--   **Premium UI/UX**: Dark mode aesthetic with glassmorphism, micro-animations, and responsive design.
--   **Admin Dashboard**: 
-    -   System statistics (Total users, expenses, messages).
-    -   User Management (Search, promote/demote admins).
-    -   Interactive Quick Actions (Simulated backups, broadcasts, system logs).
--   **Secure Authentication**: JWT-based auth with password reset functionality.
+---
+
+## ✨ Key Features
+
+### 💡 Smart Financial Dashboard
+
+* Real-time insights into income, expenses, and savings
+* Clean, data-driven visualizations for better financial awareness
+
+### 💸 Expense Tracking
+
+* Log expenses with categories and custom tags
+* Multi-currency support for global usability
+
+### 🧾 Bill Management
+
+* Manage one-time and recurring bills
+* Track payment status and upcoming due dates
+
+### 🎨 Premium UI / UX
+
+* Dark-mode-first design with glassmorphism effects
+* Smooth micro-animations and fully responsive layouts
+
+### 🛡️ Admin Dashboard
+
+* System-wide statistics (users, expenses, messages)
+* Advanced user management (search, role promotion/demotion)
+* Interactive quick actions such as:
+
+  * Simulated system backups
+  * Broadcast notifications
+  * System log monitoring
+
+### 🔐 Secure Authentication
+
+* JWT-based authentication
+* Encrypted passwords and password reset support
+
+---
 
 ## 🛠️ Tech Stack
 
--   **Frontend**: React.js, React Router, Axios, React Icons, CSS3 (Vanilla + Variables).
--   **Backend**: Node.js, Express.js.
--   **Database**: MongoDB (Mongoose).
--   **Tools**: Dotenv, Bcrypt.js, JsonWebToken.
+**Frontend**
+
+* React.js
+* React Router
+* Axios
+* React Icons
+* CSS3 (Vanilla CSS with variables)
+
+**Backend**
+
+* Node.js
+* Express.js
+
+**Database**
+
+* MongoDB with Mongoose
+
+**Utilities & Tools**
+
+* Dotenv
+* Bcrypt.js
+* JSON Web Token (JWT)
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
--   Node.js installed.
--   MongoDB Atlas account or local MongoDB instance.
+* Node.js installed on your system
+* MongoDB Atlas account or a local MongoDB setup
 
-### Installation
+---
 
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/yourusername/myspendcraft.git
-    cd Cash-Craft
-    ```
+### Installation Guide
 
-2.  **Server Setup**:
-    -   Navigate to the `server` directory.
-    -   Create a `.env` file based on `.env.example`.
-    -   Install dependencies and start the server:
-    ```bash
-    cd server
-    npm install
-    npm run dev
-    ```
+#### 1️⃣ Clone the Repository
 
-3.  **Client Setup**:
-    -   Navigate to the `client` directory.
-    -   Install dependencies and start the React app:
-    ```bash
-    cd client
-    npm install
-    npm start
-    ```
+```bash
+git clone https://github.com/yourusername/myspendcraft.git
+cd Cash-Craft
+```
+
+#### 2️⃣ Backend Setup
+
+* Navigate to the `server` directory
+* Create a `.env` file using `.env.example` as a reference
+* Install dependencies and start the server
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+#### 3️⃣ Frontend Setup
+
+* Navigate to the `client` directory
+* Install dependencies and start the React application
+
+```bash
+cd client
+npm install
+npm start
+```
+
+---
 
 ## 🔐 Admin Access
 
-To promote a user to an administrator:
+To grant administrator privileges to an existing user, run:
+
 ```bash
 node scripts/makeAdmin.js <user-email>
 ```
 
+---
+
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**.
+See the [LICENSE](LICENSE) file for more information.
 
 ---
-Built with ❤️ by [Your Name]
+
+**Built with ❤️ by Pranshu Chauhan**
