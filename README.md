@@ -86,7 +86,7 @@ In addition to user-focused features, Cash-Craft includes a comprehensive **Admi
 #### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/myspendcraft.git
+git clone https://github.com/yourusername/cash-craft.git
 cd Cash-Craft
 ```
 

@@ -59,8 +59,9 @@ const Navbar = () => {
 
     const onLogout = () => {
         setIsProfileOpen(false);
-        navigate('/');
         logout();
+        setUnreadCount(0);
+        navigate('/', { replace: true });
     };
 
     const showToast = (message, type = 'success') => {

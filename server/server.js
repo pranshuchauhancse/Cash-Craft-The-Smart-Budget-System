@@ -7,12 +7,17 @@ const { errorHandler } = require('./middleware/errorMiddleware');
 
 dotenv.config({ path: path.join(__dirname, '.env') });
 
-const requiredEnvVars = ['MONGO_URI', 'JWT_SECRET'];
-const missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
+if (process.env.NODE_ENV !== 'production') {
+    process.env.MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/cash-craft';
+    process.env.JWT_SECRET = process.env.JWT_SECRET || 'cash-craft-dev-secret';
+} else {
+    const requiredEnvVars = ['MONGO_URI', 'JWT_SECRET'];
+    const missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
 
-if (missingEnvVars.length > 0) {
-    console.error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
-    process.exit(1);
+    if (missingEnvVars.length > 0) {
+        console.error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
+        process.exit(1);
+    }
 }
 
 connectDB();

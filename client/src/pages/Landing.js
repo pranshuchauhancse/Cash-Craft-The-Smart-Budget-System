@@ -294,21 +294,21 @@ const Landing = () => {
               <div className="contact-info-icon"><FaPhone /></div>
               <div className="contact-info-text">
                 <h4>Phone</h4>
-                <a href="tel:+917052007402">+91 7052007402</a>
+                <a href="tel:+91 6394174023">+91 6394174023</a>
               </div>
             </div>
             <div className="contact-info-item">
               <div className="contact-info-icon"><FaEnvelope /></div>
               <div className="contact-info-text">
                 <h4>Email</h4>
-                <a href="mailto:support@myspendcraft.com">support@myspendcraft.com</a>
+                <a href="mailto:support@cashcraft.com">support@cashcraft.com</a>
               </div>
             </div>
             <div className="contact-info-item">
               <div className="contact-info-icon"><FaMapMarkerAlt /></div>
               <div className="contact-info-text">
                 <h4>Address</h4>
-                <p>Cash-Craft HQ, High-Tech City,<br />New Delhi, India</p>
+                <p>Maseni Chauraha Panchal Ghat Road,<br />Fatehgarh, Farrukhabad,<br />Uttar Pradesh - 209601, India</p>
               </div>
             </div>
           </div>
@@ -446,7 +446,7 @@ const Landing = () => {
             <div style={{ display: 'flex', gap: '12px' }}>
               <a href="#" className="social-btn-flat"><FaInstagram size={18} /></a>
               <a href="#" className="social-btn-flat"><FaTwitter size={18} /></a>
-              <a href="mailto:contact@myspendcraft.com" className="social-btn-flat"><FaEnvelope size={18} /></a>
+              <a href="mailto:contact@cashcraft.com" className="social-btn-flat"><FaEnvelope size={18} /></a>
             </div>
           </div>
 

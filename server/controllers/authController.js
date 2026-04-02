@@ -5,18 +5,6 @@ const nodemailer = require('nodemailer');
 const asyncHandler = require('express-async-handler');
 const User = require('../models/User');
 const ActivityLog = require('../models/ActivityLog');
-const dns = require('dns').promises;
-
-const validateEmailDomain = async (email) => {
-    try {
-        const domain = email.split('@')[1];
-        if (!domain) return false;
-        const mxRecords = await dns.resolveMx(domain);
-        return mxRecords && mxRecords.length > 0;
-    } catch (error) {
-        return false;
-    }
-};
 
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, securityQuestion, securityAnswer } = req.body;
@@ -24,13 +12,6 @@ const registerUser = asyncHandler(async (req, res) => {
     if (!name || !email || !password || !securityQuestion || !securityAnswer) {
         res.status(400);
         throw new Error('Please add all fields including security question and answer');
-    }
-
-    // validate email domain existence
-    const isValidDomain = await validateEmailDomain(email);
-    if (!isValidDomain) {
-        res.status(400);
-        throw new Error('Email provider does not exist. Please use a valid email address from a registered provider.');
     }
 
     const userExists = await User.findOne({ email });

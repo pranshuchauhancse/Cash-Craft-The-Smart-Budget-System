@@ -262,8 +262,8 @@ const Features = () => {
                         <h4>Support</h4>
                         <ul>
                             <li><Link to="/">Contact Us</Link></li>
-                            <li><a href="mailto:support@myspendcraft.com">Help Center</a></li>
-                            <li><a href="mailto:careers@myspendcraft.com">Careers</a></li>
+                            <li><a href="mailto:support@cashcraft.com">Help Center</a></li>
+                            <li><a href="mailto:careers@cashcraft.com">Careers</a></li>
                         </ul>
                     </div>
 
@@ -282,7 +282,7 @@ const Features = () => {
                         <div style={{ display: 'flex', gap: '12px' }}>
                             <a href="#" className="social-btn-flat"><FaInstagram size={18} /></a>
                             <a href="#" className="social-btn-flat"><FaTwitter size={18} /></a>
-                            <a href="mailto:contact@myspendcraft.com" className="social-btn-flat"><FaEnvelope size={18} /></a>
+                            <a href="mailto:contact@cashcraft.com" className="social-btn-flat"><FaEnvelope size={18} /></a>
                         </div>
                     </div>
 
