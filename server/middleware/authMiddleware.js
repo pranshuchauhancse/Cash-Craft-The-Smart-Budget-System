@@ -9,19 +9,20 @@ const protect = asyncHandler(async (req, res, next) => {
         try {
             // Get token from header
             token = req.headers.authorization.split(' ')[1];
-            console.log('Token received in protect middleware:', token.substring(0, 10) + '...');
 
             // Verify token
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            console.log('Token decoded, user ID:', decoded.id);
 
             // Get user from the token
             req.user = await User.findById(decoded.id).select('-password');
-            console.log('User found in middleware:', req.user ? req.user.email : 'NOT FOUND');
+
+            if (!req.user) {
+                res.status(401);
+                throw new Error('Not authorized, user not found');
+            }
 
             next();
         } catch (error) {
-            console.log(error);
             res.status(401);
             throw new Error('Not authorized');
         }
