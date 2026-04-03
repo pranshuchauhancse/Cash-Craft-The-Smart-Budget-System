@@ -301,7 +301,7 @@ const Landing = () => {
               <div className="contact-info-icon"><FaEnvelope /></div>
               <div className="contact-info-text">
                 <h4>Email</h4>
-                <a href="mailto:support@cashcraft.com">support@cashcraft.com</a>
+                <a href="mailto:pranshu121005@gmail.com">pranshu121005@gmail.com</a>
               </div>
             </div>
             <div className="contact-info-item">
@@ -446,7 +446,7 @@ const Landing = () => {
             <div style={{ display: 'flex', gap: '12px' }}>
               <a href="#" className="social-btn-flat"><FaInstagram size={18} /></a>
               <a href="#" className="social-btn-flat"><FaTwitter size={18} /></a>
-              <a href="mailto:contact@cashcraft.com" className="social-btn-flat"><FaEnvelope size={18} /></a>
+              <a href="mailto:pranshu121005@gmail.com" className="social-btn-flat"><FaEnvelope size={18} /></a>
             </div>
           </div>
 
