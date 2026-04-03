@@ -187,10 +187,10 @@ const Navbar = () => {
                                             right: '-2px',
                                             width: '8px',
                                             height: '8px',
-                                            background: '#ef4444',
+                                            background: '#f97316',
                                             borderRadius: '50%',
                                             border: '1px solid #0f172a',
-                                            boxShadow: '0 0 8px rgba(239, 68, 68, 0.5)'
+                                            boxShadow: '0 0 8px rgba(249, 115, 22, 0.5)'
                                         }}></span>
                                     )}
                                 </div>
@@ -249,7 +249,7 @@ const Navbar = () => {
                                         </button>
                                         <button className="dropdown-item" onClick={() => { navigate('/profile#support-history'); setIsProfileOpen(false); }}>
                                             <FaEnvelope size={14} /> Support History
-                                            {unreadCount > 0 && <span style={{ marginLeft: 'auto', width: '8px', height: '8px', background: '#ef4444', borderRadius: '50%' }}></span>}
+                                            {unreadCount > 0 && <span style={{ marginLeft: 'auto', width: '8px', height: '8px', background: '#f97316', borderRadius: '50%' }}></span>}
                                         </button>
                                         {isPrimaryAdmin && (
                                             <button className="dropdown-item" onClick={() => { navigate('/admin/dashboard', { state: { from: location.pathname } }); setIsProfileOpen(false); }}>

@@ -74,8 +74,8 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=number] {
-  appearance: textfield;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* Global Fix for Date Picker Icons (Visible in Dark Mode) */
@@ -151,8 +151,8 @@ body {
   width: 100%;
   max-width: 1200px;
   background: linear-gradient(135deg, rgba(8, 8, 8, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 100px;
   /* Pill Shape */
@@ -614,6 +614,7 @@ body {
 /* Cards & Components */
 .card {
   background: var(--bg-card);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-radius: var(--radius);
   padding: 24px;
@@ -632,8 +633,8 @@ body {
 
 .glass-effect {
   background: var(--glass);
-  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   border: 1px solid var(--glass-border);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
   position: relative;
@@ -1701,9 +1702,9 @@ tr:hover td {
   }
 
   .auth-card {
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
     backdrop-filter: blur(20px) saturate(150%);
     /* Reduced from 60px */
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
     padding: 32px 24px !important;
   }
 }
@@ -1712,8 +1713,8 @@ tr:hover td {
   width: 100%;
   max-width: 420px;
   background: rgba(15, 23, 42, 0.3);
-  backdrop-filter: blur(60px) saturate(200%);
   -webkit-backdrop-filter: blur(60px) saturate(200%);
+  backdrop-filter: blur(60px) saturate(200%);
   padding: 48px 40px;
   border-radius: 32px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1953,6 +1954,7 @@ tr:hover td {
   font-size: 15px;
   font-weight: 600;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   animation: slideUpSnackbar 0.3s ease-out, fadeOutSnackbar 0.3s ease-in 2.7s;
   display: flex;
@@ -2012,8 +2014,8 @@ tr:hover td {
   padding: 24px 28px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -2115,8 +2117,8 @@ tr:hover td {
   margin-top: 24px;
   position: relative;
   z-index: 1;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .chart-bar {
@@ -2473,8 +2475,8 @@ tr:hover td {
   left: 5%;
   right: 5%;
   background: rgba(8, 8, 8, 0.98);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border-radius: 24px;
   padding: 30px;
   display: flex;
@@ -2560,8 +2562,8 @@ tr:hover td {
   right: 0;
   width: 280px;
   background: rgba(8, 8, 8, 0.95);
-  backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 12px;
@@ -2591,6 +2593,7 @@ tr:hover td {
   border-radius: 24px;
   z-index: 2000;
   background: rgba(8, 8, 8, 0.98);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
@@ -2683,8 +2686,8 @@ tr:hover td {
   gap: 20px;
   padding: 20px 32px;
   background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
@@ -2737,6 +2740,7 @@ tr:hover td {
 /* Custom Select Dropdowns */
 .custom-select-wrapper {
   position: relative;
+  -webkit-user-select: none;
   user-select: none;
   z-index: auto;
   /* Allow children to escape if needed, though high z-index on local parent usually preferred */
@@ -2761,6 +2765,7 @@ tr:hover td {
   /* Remove fixed min-width causing overflow */
   justify-content: space-between;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -2795,6 +2800,7 @@ tr:hover td {
   right: 0;
   background: rgba(15, 23, 42, 0.98);
   /* More solid background */
+  -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
@@ -3019,6 +3025,7 @@ tr:hover td {
 /* Enhanced Table Styles */
 .glass-table-container {
   background: rgba(15, 23, 42, 0.4);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -3070,8 +3077,8 @@ tr:hover td {
 }
 
 .liquid-container {
-  mask-image: radial-gradient(circle, white 100%, transparent 100%);
   -webkit-mask-image: radial-gradient(circle, white 100%, transparent 100%);
+  mask-image: radial-gradient(circle, white 100%, transparent 100%);
 }
 
 .liquid-fill {
@@ -3133,8 +3140,8 @@ tr:hover td {
 
 /* Filter System Styles */
 .filter-dropdown {
-  backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
   background: rgba(15, 23, 42, 0.9);
   border: 1px solid rgba(249, 115, 22, 0.4) !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
@@ -3349,8 +3356,8 @@ tr:hover td {
   }
 
   .auth-wrapper .auth-card {
-    backdrop-filter: blur(15px) !important;
     -webkit-backdrop-filter: blur(15px) !important;
+    backdrop-filter: blur(15px) !important;
     background: rgba(15, 23, 42, 0.9) !important;
     /* More solid background to compensate for less blur */
   }
@@ -3358,6 +3365,7 @@ tr:hover td {
 
 .auth-card {
   background: rgba(15, 23, 42, 0.95);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
@@ -3507,8 +3515,8 @@ tr:hover td {
   padding: 16px 20px;
   border-radius: 20px;
   background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
     0 10px 40px -10px rgba(0, 0, 0, 0.5),
@@ -3632,8 +3640,8 @@ tr:hover td {
 .dash-sidebar {
   width: 240px;
   background: rgba(8, 8, 8, 0.4);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border-right: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
@@ -4123,7 +4131,6 @@ tr:hover td {
   /* Tables - Horizontal Scroll */
   .glass-table-container {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   .glass-table {
