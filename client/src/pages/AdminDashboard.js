@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import api from '../utils/api';
 import {
-    FaEnvelope, FaCheck, FaUser, FaClock,
+    FaEnvelope, FaCheck, FaClock,
     FaChartLine, FaUsers, FaDatabase, FaShieldAlt, FaSearch,
-    FaChevronRight, FaFilter, FaTimes, FaStar, FaTrash,
-    FaCheckCircle, FaExclamationCircle, FaInfoCircle, FaServer,
-    FaMemory, FaMicrochip, FaSync, FaTerminal, FaFileDownload,
-    FaBolt, FaReply, FaShareAlt, FaBell, FaThLarge, FaCommentDots,
+    FaFilter, FaTimes, FaStar, FaTrash,
+    FaMemory, FaSync,
+    FaBolt, FaReply,
     FaHeartbeat, FaNetworkWired
 } from 'react-icons/fa';
 
@@ -29,7 +28,6 @@ const AdminDashboard = () => {
     const [messages, setMessages] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
     const [systemLogs, setSystemLogs] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterRole, setFilterRole] = useState('all');
@@ -69,7 +67,6 @@ const AdminDashboard = () => {
             console.error('Failed to sync data', err);
             if (err.response?.status === 401) navigate('/login');
         } finally {
-            setLoading(false);
             setRefreshing(false);
             // Keep HUD active for a bit to show real-time stats scan
             setTimeout(() => setEntryHUDActive(false), 4500);
@@ -148,16 +145,6 @@ const AdminDashboard = () => {
             fetchAllData();
         } catch (err) {
             showToast('Failed to delete message', 'error');
-        }
-    };
-
-    const handleUpdateContactStatus = async (id, status) => {
-        try {
-            await api.patch(`/contact/${id}`, { status });
-            showToast('Message marked as read');
-            fetchAllData();
-        } catch (err) {
-            showToast('Failed to update status', 'error');
         }
     };
 
@@ -241,6 +228,15 @@ const AdminDashboard = () => {
 
     return (
         <div className="exact-admin-root">
+            {toast.visible && (
+                <div className="toast-container">
+                    <div className={`toast ${toast.type}`}>
+                        <div className="toast-content">
+                            <div className="toast-message">{toast.message}</div>
+                        </div>
+                    </div>
+                </div>
+            )}
             <Navbar />
 
             {/* Overlays */}

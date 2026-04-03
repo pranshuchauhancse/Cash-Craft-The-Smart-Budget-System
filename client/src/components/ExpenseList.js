@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FaEdit, FaTrash, FaTimes, FaSearchPlus } from 'react-icons/fa';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import CurrencyContext from '../context/CurrencyContext';
 
 const ExpenseList = ({

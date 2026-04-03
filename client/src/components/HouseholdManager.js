@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import api from '../utils/api';
 import AuthContext from '../context/AuthContext';
-import { FaUsers, FaUserPlus, FaHome, FaSignOutAlt, FaCopy, FaCheckCircle } from 'react-icons/fa';
+import { FaHome, FaSignOutAlt, FaCopy, FaCheckCircle } from 'react-icons/fa';
 
 const HouseholdManager = () => {
     const { user, setUser } = useContext(AuthContext);

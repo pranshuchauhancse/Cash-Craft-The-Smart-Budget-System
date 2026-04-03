@@ -41,18 +41,7 @@ const FeatureStep = ({ number, title, badge, description, items, icon: Icon, isR
 };
 
 const FeaturesSection = () => {
-    const { formatCurrency, getSymbol, currency } = React.useContext(CurrencyContext);
-
-    const currencyNounMap = {
-        'INR': 'rupee',
-        'USD': 'dollar',
-        'GBP': 'pound',
-        'EUR': 'euro',
-        'JPY': 'yen',
-        'AUD': 'AUD',
-        'CAD': 'CAD'
-    };
-    const currencyNoun = currencyNounMap[currency] || 'rupee';
+    const { formatCurrency, getSymbol } = React.useContext(CurrencyContext);
 
     return (
         <div id="features" className="features-container" style={{ minHeight: 'auto', background: 'transparent' }}>

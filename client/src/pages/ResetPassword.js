@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { FaGem, FaLock, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
+import { FaGem, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
 import api from '../utils/api';
 
 const ResetPassword = () => {

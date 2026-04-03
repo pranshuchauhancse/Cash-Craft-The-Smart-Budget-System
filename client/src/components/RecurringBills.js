@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import api from '../utils/api';
 import CurrencyContext from '../context/CurrencyContext';
-import { FaCalendarAlt, FaPlus, FaTrash, FaCheckCircle, FaClock, FaExclamationTriangle } from 'react-icons/fa';
+import { FaCalendarAlt, FaPlus, FaTrash, FaClock, FaExclamationTriangle } from 'react-icons/fa';
 
 const RecurringBills = () => {
     const [bills, setBills] = useState([]);

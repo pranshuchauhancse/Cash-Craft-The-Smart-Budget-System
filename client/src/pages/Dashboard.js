@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import api from '../utils/api';
@@ -14,10 +14,9 @@ import CustomSelect from '../components/CustomSelect';
 import Sparkline from '../components/Sparkline';
 import LiquidBudget from '../components/LiquidBudget';
 import RecurringBills from '../components/RecurringBills';
-import HouseholdManager from '../components/HouseholdManager';
 import HouseholdHub from '../components/HouseholdHub';
 import FeedbackSection from '../components/FeedbackSection';
-import { FaArrowUp, FaArrowDown, FaWallet, FaUniversity, FaCreditCard, FaMoneyBillWave, FaDownload, FaCalendarAlt, FaSyncAlt, FaPlus, FaExclamationTriangle, FaEdit, FaCheckCircle, FaUtensils, FaShoppingBag, FaPlane, FaFilm, FaFileInvoice, FaShoppingCart, FaTrash, FaRobot, FaInfoCircle, FaExclamationCircle, FaThLarge, FaList, FaChartPie, FaPercentage, FaFileInvoiceDollar, FaUsers, FaCommentDots, FaTimes } from 'react-icons/fa';
+import { FaArrowUp, FaArrowDown, FaWallet, FaUniversity, FaCreditCard, FaMoneyBillWave, FaDownload, FaCalendarAlt, FaSyncAlt, FaPlus, FaExclamationTriangle, FaCheckCircle, FaTrash, FaInfoCircle, FaExclamationCircle, FaThLarge, FaList, FaChartPie, FaPercentage, FaFileInvoiceDollar, FaUsers, FaCommentDots } from 'react-icons/fa';
 
 const Dashboard = () => {
     const [expenses, setExpenses] = useState([]);
@@ -41,22 +40,7 @@ const Dashboard = () => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const years = Array.from({ length: 11 }, (_, i) => new Date().getFullYear() - 5 + i);
 
-    useEffect(() => {
-        fetchExpenses();
-        processRecurringBills();
-        fetchAnnouncement();
-        const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-
-        // Poll for announcements every 5 minutes
-        const announcementTimer = setInterval(fetchAnnouncement, 5 * 60 * 1000);
-
-        return () => {
-            clearInterval(timer);
-            clearInterval(announcementTimer);
-        };
-    }, []);
-
-    const fetchAnnouncement = async () => {
+    const fetchAnnouncement = useCallback(async () => {
         try {
             const { data } = await api.get('/auth/announcement');
             // Backend now handles filtering for dismissed announcements
@@ -68,7 +52,7 @@ const Dashboard = () => {
         } catch (error) {
             console.error('Error fetching announcement', error);
         }
-    };
+    }, []);
 
     const handleDismissAnnouncement = async () => {
         if (announcement) {
@@ -90,14 +74,39 @@ const Dashboard = () => {
     };
 
 
-    const processRecurringBills = async () => {
+    const fetchExpenses = useCallback(async () => {
+        try {
+            const { data } = await api.get('/expenses');
+            setExpenses(data);
+        } catch (error) {
+            console.error('Error fetching expenses', error);
+            showToast('Failed to load expenses', 'error');
+        }
+    }, []);
+
+    const processRecurringBills = useCallback(async () => {
         try {
             await api.post('/recurring/process');
             fetchExpenses();
         } catch (error) {
             console.error('Error processing recurring bills', error);
         }
-    };
+    }, [fetchExpenses]);
+
+    useEffect(() => {
+        fetchExpenses();
+        processRecurringBills();
+        fetchAnnouncement();
+        const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+
+        // Poll for announcements every 5 minutes
+        const announcementTimer = setInterval(fetchAnnouncement, 5 * 60 * 1000);
+
+        return () => {
+            clearInterval(timer);
+            clearInterval(announcementTimer);
+        };
+    }, [fetchAnnouncement, fetchExpenses, processRecurringBills]);
 
     const exportToCSV = () => {
         const headers = ['Date', 'Title', 'Amount', 'Type', 'Category', 'Wallet', 'Note'];
@@ -169,8 +178,6 @@ const Dashboard = () => {
 
 
         const currencyCode = user?.preferences?.currency || 'INR';
-        const currencyLabel = currencyCode === 'INR' ? 'Rs.' : currencyCode;
-
         doc.text(`Total Income (${currencyCode}):`, 20, 62);
         doc.setFont("helvetica", "bold");
         doc.text(`${totalIncome.toLocaleString()}`, 60, 62);
@@ -237,16 +244,6 @@ const Dashboard = () => {
     const showToast = (message, type = 'success') => {
         setToast({ visible: true, message, type });
         setTimeout(() => setToast({ visible: false, message: '', type: 'success' }), 3000);
-    };
-
-    const fetchExpenses = async () => {
-        try {
-            const { data } = await api.get('/expenses');
-            setExpenses(data);
-        } catch (error) {
-            console.error('Error fetching expenses', error);
-            showToast('Failed to load expenses', 'error');
-        }
     };
 
     const addExpense = async (expenseData) => {
@@ -351,21 +348,6 @@ const Dashboard = () => {
             showToast('Failed to update budget', 'error');
         }
     };
-
-    const getComparisonData = () => {
-        const prevMonth = (selectedMonth - 1 + 12) % 12;
-        const prevYear = selectedMonth === 0 ? selectedYear - 1 : selectedYear;
-
-        const prevMonthExpenses = expenses.filter(e => {
-            const d = new Date(e.date);
-            return d.getMonth() === prevMonth && d.getFullYear() === prevYear && e.type === 'expense';
-        }).reduce((a, b) => a + b.amount, 0);
-
-        const changePercent = prevMonthExpenses > 0 ? Math.round(((totalExpense - prevMonthExpenses) / prevMonthExpenses) * 100) : 0;
-        return changePercent;
-    };
-
-    const expenseChange = getComparisonData();
 
     const updateBudget = (newBudget) => {
         setMonthlyBudget(newBudget);
@@ -675,8 +657,6 @@ const Dashboard = () => {
                                         const percentage = budget > 0 ? Math.min((spent / budget) * 100, 100) : 0;
                                         const isOverBudget = spent > budget && budget > 0;
                                         const isWarning = percentage > 80 && percentage <= 100;
-                                        const isGood = percentage <= 80;
-
                                         let barColor = 'var(--success)';
                                         if (isOverBudget) barColor = 'var(--danger)';
                                         else if (isWarning) barColor = '#f59e0b';

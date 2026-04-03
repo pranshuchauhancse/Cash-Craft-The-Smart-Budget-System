@@ -2,12 +2,12 @@ import { useState, useContext, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import CurrencyContext from '../context/CurrencyContext';
-import { FaUser, FaEnvelope, FaGlobeAmericas, FaGem, FaArrowLeft, FaCheckCircle, FaSave, FaShieldAlt, FaExclamationCircle, FaInfoCircle } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaGlobeAmericas, FaArrowLeft, FaCheckCircle, FaSave, FaShieldAlt, FaExclamationCircle, FaInfoCircle } from 'react-icons/fa';
 import api from '../utils/api';
 
 const Profile = () => {
     const { user, loading, setUser } = useContext(AuthContext);
-    const { currency, country, changeCurrency, ratesList } = useContext(CurrencyContext);
+    const { currency, changeCurrency, ratesList } = useContext(CurrencyContext);
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({

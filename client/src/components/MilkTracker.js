@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import { FaScaleBalanced, FaFileInvoiceDollar } from 'react-icons/fa6';
 import { FaTrash } from 'react-icons/fa';
 import CurrencyContext from '../context/CurrencyContext';
 

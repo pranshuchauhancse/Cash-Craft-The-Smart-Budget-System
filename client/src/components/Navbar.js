@@ -15,7 +15,7 @@ const Navbar = () => {
     const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [unreadCount, setUnreadCount] = useState(0);
-    const [toast, setToast] = useState({ visible: false, message: '', type: 'success' });
+    const [toast] = useState({ visible: false, message: '', type: 'success' });
     const currencyRef = useRef(null);
     const profileRef = useRef(null);
     const isPrimaryAdmin = user?.email?.toLowerCase() === 'pranshu121005@gmail.com';
@@ -63,11 +63,6 @@ const Navbar = () => {
         logout();
         setUnreadCount(0);
         navigate('/', { replace: true });
-    };
-
-    const showToast = (message, type = 'success') => {
-        setToast({ visible: true, message, type });
-        setTimeout(() => setToast({ visible: false, message: '', type: 'success' }), 3000);
     };
 
     const handleNavigation = (sectionId) => {

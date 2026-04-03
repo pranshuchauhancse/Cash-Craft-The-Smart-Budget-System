@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    FaArrowRight, FaPlus, FaShoppingCart, FaChartLine, FaShieldAlt,
-    FaCalendarAlt, FaCheckCircle, FaChevronDown, FaChevronUp, FaRupeeSign,
-    FaArrowUp, FaArrowDown, FaWallet, FaGem, FaInstagram, FaTwitter, FaEnvelope
+    FaArrowRight, FaPlus, FaShieldAlt,
+    FaCheckCircle, FaChevronDown, FaChevronUp,
+    FaArrowUp, FaGem, FaInstagram, FaTwitter, FaEnvelope
 } from 'react-icons/fa';
 import './Features.css';
 
@@ -280,8 +280,8 @@ const Features = () => {
                     <div className="footer-juspay-column">
                         <h4>Connect</h4>
                         <div style={{ display: 'flex', gap: '12px' }}>
-                            <a href="#" className="social-btn-flat"><FaInstagram size={18} /></a>
-                            <a href="#" className="social-btn-flat"><FaTwitter size={18} /></a>
+                            <button type="button" className="social-btn-flat"><FaInstagram size={18} /></button>
+                            <button type="button" className="social-btn-flat"><FaTwitter size={18} /></button>
                             <a href="mailto:pranshu121005@gmail.com" className="social-btn-flat"><FaEnvelope size={18} /></a>
                         </div>
                     </div>

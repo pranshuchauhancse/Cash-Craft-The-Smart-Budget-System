@@ -8,11 +8,9 @@ import {
   FaMapMarkerAlt,
   FaChevronDown,
   FaInstagram,
-  FaChartPie,
   FaArrowRight,
   FaGem,
   FaShieldAlt,
-  FaWallet,
   FaCode,
   FaMusic,
   FaPlay,
@@ -32,7 +30,7 @@ import api from '../utils/api';
 
 const Landing = () => {
   const { user } = useContext(AuthContext);
-  const { formatCurrency, getSymbol, currency } = useContext(CurrencyContext);
+  const { getSymbol, currency } = useContext(CurrencyContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -443,11 +441,13 @@ const Landing = () => {
           {/* Social Column */}
           <div className="footer-juspay-column">
             <h4>Connect</h4>
+            {/* eslint-disable jsx-a11y/anchor-is-valid */}
             <div style={{ display: 'flex', gap: '12px' }}>
-              <a href="#" className="social-btn-flat"><FaInstagram size={18} /></a>
-              <a href="#" className="social-btn-flat"><FaTwitter size={18} /></a>
+              <button type="button" className="social-btn-flat"><FaInstagram size={18} /></button>
+              <button type="button" className="social-btn-flat"><FaTwitter size={18} /></button>
               <a href="mailto:pranshu121005@gmail.com" className="social-btn-flat"><FaEnvelope size={18} /></a>
             </div>
+            {/* eslint-enable jsx-a11y/anchor-is-valid */}
           </div>
 
           {/* Scroll Up Button */}

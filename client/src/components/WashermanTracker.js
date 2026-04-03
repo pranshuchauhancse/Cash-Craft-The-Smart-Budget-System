@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { FaTrash, FaTshirt } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 import CurrencyContext from '../context/CurrencyContext';
 
 const WashermanTracker = ({ allExpenses, onAddExpense, onDeleteExpense, selectedMonth, selectedYear }) => {
