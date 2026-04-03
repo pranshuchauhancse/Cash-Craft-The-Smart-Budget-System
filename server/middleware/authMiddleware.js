@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
 const User = require('../models/User');
 
+const FIXED_ADMIN_EMAIL = 'pranshu121005@gmail.com';
+
 const protect = asyncHandler(async (req, res, next) => {
     let token;
 
@@ -35,7 +37,9 @@ const protect = asyncHandler(async (req, res, next) => {
 });
 
 const admin = (req, res, next) => {
-    if (req.user && req.user.isAdmin) {
+    const userEmail = req.user?.email?.toLowerCase();
+
+    if (req.user && userEmail === FIXED_ADMIN_EMAIL) {
         next();
     } else {
         res.status(401);
@@ -43,4 +47,4 @@ const admin = (req, res, next) => {
     }
 };
 
-module.exports = { protect, admin };
+module.exports = { protect, admin, FIXED_ADMIN_EMAIL };

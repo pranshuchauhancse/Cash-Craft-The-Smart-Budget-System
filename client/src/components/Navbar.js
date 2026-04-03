@@ -18,6 +18,7 @@ const Navbar = () => {
     const [toast, setToast] = useState({ visible: false, message: '', type: 'success' });
     const currencyRef = useRef(null);
     const profileRef = useRef(null);
+    const isPrimaryAdmin = user?.email?.toLowerCase() === 'pranshu121005@gmail.com';
 
     useEffect(() => {
         let interval;
@@ -250,8 +251,8 @@ const Navbar = () => {
                                             <FaEnvelope size={14} /> Support History
                                             {unreadCount > 0 && <span style={{ marginLeft: 'auto', width: '8px', height: '8px', background: '#ef4444', borderRadius: '50%' }}></span>}
                                         </button>
-                                        {user.isAdmin && (
-                                            <button className="dropdown-item" onClick={() => { navigate('/admin/dashboard'); setIsProfileOpen(false); }}>
+                                        {isPrimaryAdmin && (
+                                            <button className="dropdown-item" onClick={() => { navigate('/admin/dashboard', { state: { from: location.pathname } }); setIsProfileOpen(false); }}>
                                                 <FaChartLine size={14} /> Admin Dashboard
                                             </button>
                                         )}

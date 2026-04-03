@@ -7,7 +7,7 @@ dotenv.config({ path: path.join(__dirname, '../server/.env') });
 
 const makeAdmin = async () => {
     try {
-        const email = process.argv[2];
+        const email = process.argv[2] || process.env.ADMIN_EMAIL || 'pranshu121005@gmail.com';
         if (!email) {
             console.error('Usage: node scripts/makeAdmin.js <email>');
             process.exit(1);

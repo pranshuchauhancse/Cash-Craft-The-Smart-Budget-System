@@ -9,6 +9,7 @@ const Announcement = require('../models/Announcement');
 const ActivityLog = require('../models/ActivityLog');
 const mongoose = require('mongoose');
 const os = require('os');
+const { FIXED_ADMIN_EMAIL } = require('../middleware/authMiddleware');
 
 const getAdminStats = asyncHandler(async (req, res) => {
     const totalUsers = await User.countDocuments();
@@ -65,6 +66,18 @@ const updateUserRole = asyncHandler(async (req, res) => {
         throw new Error('User not found');
     }
 
+    if (user.email.toLowerCase() === FIXED_ADMIN_EMAIL) {
+        user.isAdmin = true;
+        await user.save();
+        res.status(403);
+        throw new Error('Primary admin role cannot be changed');
+    }
+
+    if (req.body.isAdmin === true) {
+        res.status(403);
+        throw new Error('Only primary admin account can have admin access');
+    }
+
     user.isAdmin = req.body.isAdmin !== undefined ? req.body.isAdmin : user.isAdmin;
 
     const updatedUser = await user.save();
@@ -93,7 +106,7 @@ const deleteUser = asyncHandler(async (req, res) => {
         throw new Error('User not found');
     }
 
-    if (user.isAdmin) {
+    if (user.isAdmin || user.email.toLowerCase() === FIXED_ADMIN_EMAIL) {
         res.status(400);
         throw new Error('Cannot delete admin user');
     }

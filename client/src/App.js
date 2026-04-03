@@ -13,6 +13,7 @@ import Landing from './pages/Landing';
 import Features from './pages/Features';
 import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
+import InvalidAccess from './pages/InvalidAccess';
 
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
@@ -26,6 +27,24 @@ const ProtectedRoute = ({ children }) => {
 
   if (!user) {
     return <Navigate to="/" />;
+  }
+
+  return children;
+};
+
+const FIXED_ADMIN_EMAIL = 'pranshu121005@gmail.com';
+
+const AdminRoute = ({ children }) => {
+  const { user, loading } = useContext(AuthContext);
+
+  if (loading) return <div className="loading-screen">Loading...</div>;
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (user.email?.toLowerCase() !== FIXED_ADMIN_EMAIL) {
+    return <InvalidAccess />;
   }
 
   return children;
@@ -66,9 +85,9 @@ function App() {
             <Route
               path="/admin/dashboard"
               element={
-                <ProtectedRoute>
+                <AdminRoute>
                   <AdminDashboard />
-                </ProtectedRoute>
+                </AdminRoute>
               }
             />
           </Routes>
