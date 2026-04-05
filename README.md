@@ -1,128 +1,110 @@
-# **Cash-Craft – Master Your Finances 🚀**
+# Cash-Craft - The Smart Budget System
 
-**Cash-Craft** is a premium personal finance management application built using the **MERN stack**, designed to help users take full control of their financial life. With a sleek, modern interface and powerful tracking tools, Cash-Craft makes managing expenses, bills, and overall financial health both intuitive and visually engaging.
+Cash-Craft is a full-stack personal finance application built with the MERN stack.
+It helps users track expenses, manage bills, monitor savings, and organize household
+finance activity from a single dashboard.
 
-In addition to user-focused features, Cash-Craft includes a comprehensive **Admin Panel** for system oversight, analytics, and user management.
+The project also includes an admin panel for user and system management.
 
----
+## Features
 
-## ✨ Key Features
+- Authentication with JWT
+- Expense tracking with charts and trend views
+- One-time and recurring bill management
+- Household management workflows
+- Contact and feedback modules
+- Admin dashboard for user and platform-level actions
 
-### 💡 Smart Financial Dashboard
+## Tech Stack
 
-* Real-time insights into income, expenses, and savings
-* Clean, data-driven visualizations for better financial awareness
+- Frontend: React, React Router, Axios, Chart.js
+- Backend: Node.js, Express
+- Database: MongoDB with Mongoose
+- Auth/Security: bcryptjs, jsonwebtoken
 
-### 💸 Expense Tracking
+## Repository Structure
 
-* Log expenses with categories and custom tags
-* Multi-currency support for global usability
+- `client`: React frontend
+- `server`: Express API, business logic, data models
+- `scripts`: Utility scripts (for example, admin role assignment)
 
-### 🧾 Bill Management
+## Prerequisites
 
-* Manage one-time and recurring bills
-* Track payment status and upcoming due dates
+- Node.js 18+ recommended
+- npm 9+ recommended
+- MongoDB (Atlas or local)
 
-### 🎨 Premium UI / UX
+## Environment Variables
 
-* Dark-mode-first design with glassmorphism effects
-* Smooth micro-animations and fully responsive layouts
+Create `server/.env` for development and production.
 
-### 🛡️ Admin Dashboard
+Common variables:
 
-* System-wide statistics (users, expenses, messages)
-* Advanced user management (search, role promotion/demotion)
-* Interactive quick actions such as:
-
-  * Simulated system backups
-  * Broadcast notifications
-  * System log monitoring
-
-### 🔐 Secure Authentication
-
-* JWT-based authentication
-* Encrypted passwords and password reset support
-
----
-
-## 🛠️ Tech Stack
-
-**Frontend**
-
-* React.js
-* React Router
-* Axios
-* React Icons
-* CSS3 (Vanilla CSS with variables)
-
-**Backend**
-
-* Node.js
-* Express.js
-
-**Database**
-
-* MongoDB with Mongoose
-
-**Utilities & Tools**
-
-* Dotenv
-* Bcrypt.js
-* JSON Web Token (JWT)
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-* Node.js installed on your system
-* MongoDB Atlas account or a local MongoDB setup
-
----
-
-### Installation Guide
-
-#### 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/cash-craft.git
-cd Cash-Craft
+```env
+MONGO_URI=mongodb://127.0.0.1:27017/cash-craft
+JWT_SECRET=replace-with-a-secure-secret
+PORT=5000
 ```
 
-#### 2️⃣ Backend Setup
+Notes:
 
-* Navigate to the `server` directory
-* Create a `.env` file using `.env.example` as a reference
-* Install dependencies and start the server
+- In development, the server falls back to default values for `MONGO_URI` and
+  `JWT_SECRET` if they are missing.
+- In production, both `MONGO_URI` and `JWT_SECRET` are required and the server
+  exits if they are not set.
+
+## Run Locally
+
+From the repository root:
 
 ```bash
-cd server
 npm install
 npm run dev
 ```
 
-#### 3️⃣ Frontend Setup
+This starts:
 
-* Navigate to the `client` directory
-* Install dependencies and start the React application
+- API server on `http://localhost:5000`
+- React client on `http://localhost:3000`
+
+The frontend proxies API requests to the backend through the client proxy
+configuration.
+
+## Available Root Scripts
+
+- `npm run dev`: Run backend and frontend concurrently (development)
+- `npm run server`: Run backend with nodemon
+- `npm run client`: Run React client
+- `npm run build`: Install dependencies and build frontend for production
+- `npm start`: Start backend server (serves `client/build` in production)
+
+## Build and Production
+
+Create a production frontend build:
 
 ```bash
-cd client
-npm install
+npm run build
+```
+
+Run production server:
+
+```bash
 npm start
 ```
 
----
+When `NODE_ENV=production`, Express serves static files from `client/build` and
+routes non-API requests to the React app.
 
-## 🔐 Admin Access
+## Admin Access Script
 
-To grant administrator privileges to an existing user, run:
+Promote an existing user to admin:
 
 ```bash
-node scripts/makeAdmin.js <user-email>
+node scripts/makeAdmin.js user@example.com
 ```
 
----
+The script reads database configuration from `server/.env`.
 
-**Built with ❤️ by Pranshu Chauhan**
+## License
+
+ISC
