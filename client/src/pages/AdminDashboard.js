@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import api from '../utils/api';
+import AuthContext from '../context/AuthContext';
 import {
     FaEnvelope, FaCheck, FaClock,
     FaChartLine, FaUsers, FaDatabase, FaShieldAlt, FaSearch,
@@ -22,6 +23,8 @@ const StatCard = ({ icon, label, value, color }) => (
 );
 
 const AdminDashboard = () => {
+    const FIXED_ADMIN_EMAIL = 'pranshu121005@gmail.com';
+    const { user, loading: authLoading } = useContext(AuthContext);
     const [activeTab, setActiveTab] = useState('overview');
     const [stats, setStats] = useState(null);
     const [users, setUsers] = useState([]);
@@ -40,6 +43,7 @@ const AdminDashboard = () => {
     const [entryHUDActive, setEntryHUDActive] = useState(true);
 
     const navigate = useNavigate();
+    const isAuthorizedAdmin = user?.email?.trim().toLowerCase() === FIXED_ADMIN_EMAIL;
 
     const showToast = (message, type = 'success') => {
         setToast({ visible: true, message, type });
@@ -74,6 +78,10 @@ const AdminDashboard = () => {
     }, [navigate]); // Removed 'stats' from dependencies to break infinite loop
 
     useEffect(() => {
+        if (authLoading || !isAuthorizedAdmin) {
+            return;
+        }
+
         fetchAllData();
 
         // Auto-refresh data every 30 seconds for a "live" feel
@@ -82,7 +90,24 @@ const AdminDashboard = () => {
         }, 30000);
 
         return () => clearInterval(autoSync);
-    }, [fetchAllData]);
+    }, [authLoading, isAuthorizedAdmin, fetchAllData]);
+
+    if (authLoading) {
+        return <div className="loading-screen">Checking admin credentials...</div>;
+    }
+
+    if (!isAuthorizedAdmin) {
+        return (
+            <div className="exact-admin-root" style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', padding: '24px' }}>
+                <div style={{ maxWidth: '520px', width: '100%', textAlign: 'center', background: '#0a0a0a', border: '1px solid #1f1f1f', borderRadius: '18px', padding: '32px' }}>
+                    <h1 style={{ margin: 0, color: '#ef4444', fontSize: '32px', fontWeight: 800 }}>Access Denied</h1>
+                    <p style={{ marginTop: '12px', color: '#d1d5db', lineHeight: 1.6 }}>
+                        Credential check failed. This admin dashboard is only available for <strong>{FIXED_ADMIN_EMAIL}</strong>.
+                    </p>
+                </div>
+            </div>
+        );
+    }
 
     const runBackupTask = async () => {
         setActiveOverlay('backup');
